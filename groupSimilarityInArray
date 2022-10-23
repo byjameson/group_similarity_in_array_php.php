@@ -1,0 +1,46 @@
+function gsia($event,$similarity){
+$blockKey = [];
+$event2 = [];
+
+foreach($event as $key => $events){
+if(in_array($key,$blockKey))
+continue;
+$event2[$events][] = $events;
+
+
+
+if(!in_array($key,$blockKey))
+$blockKey[] = $key;
+foreach($event as $key2 => $events2){
+  if(in_array($key2,$blockKey))
+  continue;
+if(strlen($events)>strlen($events2))
+{
+  $text1 = $events;
+  $text2 = $events2;
+
+}else
+{
+  $text1 = $events2;
+  $text2 = $events;
+}
+
+similar_text($text1,$text2,$perc);
+
+if($perc>$similarity)
+
+{
+
+  $event2[$events][] = $events2;
+
+
+  if(!in_array($key2,$blockKey))
+  $blockKey[] = $key2;
+
+}
+
+}
+}
+
+return $event2;
+}
