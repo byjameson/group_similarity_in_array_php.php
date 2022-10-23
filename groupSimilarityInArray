@@ -1,3 +1,4 @@
+<?php
 function gsia($event,$similarity){
 $blockKey = [];
 $event2 = [];
